@@ -3,9 +3,10 @@ import java.util.Scanner;
 public class Main{
 
     public static void main(String args[]){
+        
         InputReader inputReader = new ScannerInputReader();
+        
         OutputDisplayer outputDisplayer = new ConsoleOutputDisplayer();
-
         CapitalizeLettersOutputPort presenter = new ConsolePrinterPresenter(outputDisplayer);
         CapitalizeLettersInputPort capitalizeLettersUseCase = new CapitalizeLettersUseCase(presenter);
 
