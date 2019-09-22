@@ -1,0 +1,56 @@
+@startuml
+
+title Clean architecture example
+
+interface CapitalizeLettersInputPort {
+    +capitalizeLetters()
+}
+
+interface CapitalizeLettersOutputPort {
+    +display()
+}
+
+interface InputReader {
+    +getInput()
+}
+
+interface OutputDisplayer {
+    ++display()
+}
+
+class CapitalizeLettersUseCase {
+    +capitalizeLetters()
+}
+
+class CapitalizeLettersController {
+    +capitalizeLetters()
+}
+
+class ConsolePrinterPresenter {
+    +display()
+}
+
+class ScannerInputReader {
+    +getInput()
+}
+
+class ConsoleOutputDisplayer {
+    +display()
+}
+
+class Main{
+
+}
+note left: Entry point
+
+CapitalizeLettersInputPort <|.. CapitalizeLettersUseCase
+CapitalizeLettersOutputPort <-- CapitalizeLettersUseCase
+CapitalizeLettersInputPort <-- CapitalizeLettersController
+InputReader <-- CapitalizeLettersController
+CapitalizeLettersOutputPort <|.. ConsolePrinterPresenter
+OutputDisplayer <-- ConsolePrinterPresenter
+ScannerInputReader <|.. InputReader
+ConsoleOutputDisplayer <|.. OutputDisplayer
+CapitalizeLettersController <-- Main
+
+@enduml
