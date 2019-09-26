@@ -10,7 +10,7 @@ public class Main{
         CapitalizeLettersOutputPort presenter = new ConsolePrinterPresenter(outputDisplayer);
         CapitalizeLettersInputPort capitalizeLettersUseCase = new CapitalizeLettersUseCase(presenter);
 
-        CapitalizeLettersController controller =  new CapitalizeLettersController(
+        Controller controller =  new Controller(
           capitalizeLettersUseCase,
           inputReader
         );
@@ -53,12 +53,12 @@ class ConsoleOutputDisplayer implements OutputDisplayer{
 }
 
 // Controller
-class CapitalizeLettersController{
+class Controller{
 
     private CapitalizeLettersInputPort useCaseInputPort;
     private InputReader inputReader;
 
-    public CapitalizeLettersController(CapitalizeLettersInputPort useCaseInputPort, InputReader inputReader){
+    public Controller(CapitalizeLettersInputPort useCaseInputPort, InputReader inputReader){
         this.useCaseInputPort = useCaseInputPort;
         this.inputReader = inputReader;
     }

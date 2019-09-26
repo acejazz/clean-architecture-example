@@ -3,39 +3,43 @@
 title Clean architecture example
 
 interface CapitalizeLettersInputPort {
-    +capitalizeLetters()
+    + capitalizeLetters(String)
 }
 
 interface CapitalizeLettersOutputPort {
-    +display()
+    + display()
 }
 
 interface InputReader {
-    +String getInput()
+    + String getInput()
 }
 
 interface OutputDisplayer {
-    +void display(String)
+    + void display(String)
 }
 
 class CapitalizeLettersUseCase {
-    +void capitalizeLetters(String)
+    - CapitalizeLettersOutputPort
+    + void capitalizeLetters(String)
 }
 
-class CapitalizeLettersController {
-    +void capitalizeLetters()
+class Controller {
+    - InputReader
+    - CapitalizeLettersInputPort
+    + void capitalizeLetters(String)
 }
 
 class ConsolePrinterPresenter {
-    +void display(String)
+    - OutputDisplayer
+    + void display(String)
 }
 
 class ScannerInputReader {
-    +String getInput()
+    + String getInput()
 }
 
 class ConsoleOutputDisplayer {
-    +void display(String)
+    + void display(String)
 }
 
 class Main{
@@ -45,12 +49,12 @@ note left: Entry point
 
 CapitalizeLettersInputPort <|.. CapitalizeLettersUseCase
 CapitalizeLettersOutputPort <-- CapitalizeLettersUseCase
-CapitalizeLettersInputPort <-- CapitalizeLettersController
-InputReader <-- CapitalizeLettersController
+CapitalizeLettersInputPort <-- Controller
+InputReader <-- Controller
 CapitalizeLettersOutputPort <|.. ConsolePrinterPresenter
 OutputDisplayer <-- ConsolePrinterPresenter
 InputReader <|.. ScannerInputReader
 OutputDisplayer <|.. ConsoleOutputDisplayer
-CapitalizeLettersController <-- Main
+Controller <-- Main
 
 @enduml
