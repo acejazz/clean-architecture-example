@@ -11,31 +11,31 @@ interface CapitalizeLettersOutputPort {
 }
 
 interface InputReader {
-    +getInput()
+    +String getInput()
 }
 
 interface OutputDisplayer {
-    ++display()
+    +void display(String)
 }
 
 class CapitalizeLettersUseCase {
-    +capitalizeLetters()
+    +void capitalizeLetters(String)
 }
 
 class CapitalizeLettersController {
-    +capitalizeLetters()
+    +void capitalizeLetters()
 }
 
 class ConsolePrinterPresenter {
-    +display()
+    +void display(String)
 }
 
 class ScannerInputReader {
-    +getInput()
+    +String getInput()
 }
 
 class ConsoleOutputDisplayer {
-    +display()
+    +void display(String)
 }
 
 class Main{
@@ -49,8 +49,8 @@ CapitalizeLettersInputPort <-- CapitalizeLettersController
 InputReader <-- CapitalizeLettersController
 CapitalizeLettersOutputPort <|.. ConsolePrinterPresenter
 OutputDisplayer <-- ConsolePrinterPresenter
-ScannerInputReader <|.. InputReader
-ConsoleOutputDisplayer <|.. OutputDisplayer
+InputReader <|.. ScannerInputReader
+OutputDisplayer <|.. ConsoleOutputDisplayer
 CapitalizeLettersController <-- Main
 
 @enduml
